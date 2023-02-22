@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="copy">
+		<fieldset class="border border-warning p-2">
+			<legend class="bg-warning text-danger p-1">Informatii</legend>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>CIF: </b></div>
+   				<span th:text="${tcif}"></span>
+			</div>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>AN lucru: </b></div>
+   				<span th:text="${an}"></span>
+			</div>
+		</fieldset>
+	</div>
+</body>
+</html>

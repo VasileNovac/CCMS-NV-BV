@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Initializare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" ></script>
+<!-- 
+	<link rel="stylesheet" href="css_style.css">
+	<script type="text/javascript" src="include.js"></script>
+-->
+</head>
+<body class="bg-dark">
+	<span th:insert="~{navbar :: copy}"></span>
+	<div class="container-fluid">
+		<form action="#" th:action="@{/err1Sejur}" th:object="${sejur}" method="post" id="forme1"></form>
+		<form action="#" th:action="@{/errSejur}" th:object="${sejur}" method="post" id="forme"></form>
+		<form action="#" th:action="@{/addSejur}" th:object="${sejur}" method="post" id="xforme">
+			<div class="row">
+				<div class="col-sm-2 p-3">
+					<div th:if="${erori}">
+						<div class="alert alert-danger alert-dismissible">
+							<button type="button" class="btn" data-bs-dismiss="alert"></button>
+							<strong>ATENTIONARE !</strong><br>Data in extrasezon
+						</div>
+					</div>
+					<span th:insert="~{cifan :: copy}"></span>
+					<span th:insert="~{actid :: copy}"></span>
+				</div>
+				<div class="col-sm-2 p-3">
+					<fieldset class="border border-warning p-2">
+					<legend class="bg-warning text-danger p-1">Sejur Client:</legend>
+					<div th:if="${erori} or ${nrView}">
+						<div class="form-floating mb-1 mt-1">
+   							<input type="text" class="form-control text-success" id="dts" placeholder="Data Sosirii" name="dtsosit" value="" th:autofocus="${err11}" required form="forme1" onchange="forme1.submit()" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" oninvalid="this.setCustomValidity('Format: ZZ-LL-AAAA');" oninput="setCustomValidity('');" th:field="*{dtSosit}">
+   							<label for="dts" class="form-label text-danger"><b>Data Sosirii:</b></label>
+						</div>
+						<div class="form-floating mb-1 mt-1">
+   							<input type="text" class="form-control text-success" id="dtp" placeholder="Data Plecarii" name="dtplecat" value="" th:autofocus="${err0}" required form="forme" onchange="forme.submit()" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" oninvalid="this.setCustomValidity('Format: ZZ-LL-AAAA');" oninput="setCustomValidity('');" th:field="*{dtPlecat}">
+   							<label for="dtp" class="form-label text-danger"><b>Data Plecarii:</b></label>
+						</div>
+					</div>
+					<div th:unless="${erori} or ${nrView}">
+						<div class="form-floating mb-1 mt-1">
+   							<input type="text" class="form-control text-success" id="dts" placeholder="Data Sosirii" name="dtsosit" value="" required pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" oninvalid="this.setCustomValidity('Format: ZZ-LL-AAAA');" oninput="setCustomValidity('');" th:field="*{dtSosit}">
+   							<label for="dts" class="form-label text-danger"><b>Data Sosirii:</b></label>
+						</div>
+						<div class="form-floating mb-1 mt-1">
+   							<input type="text" class="form-control text-success" id="dtp" placeholder="Data Plecarii" name="dtplecat" value="" required pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" oninvalid="this.setCustomValidity('Format: ZZ-LL-AAAA');" oninput="setCustomValidity('');" th:field="*{dtPlecat}">
+   							<label for="dtp" class="form-label text-danger"><b>Data Plecarii:</b></label>
+						</div>
+					</div>
+					</fieldset>
+				</div>
+				<div class="col-sm-3 p-3">
+					<fieldset class="border border-warning p-2">
+					<legend class="bg-warning text-danger p-1">Sejur la CORT</legend>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="cort" placeholder="Cort" name="nrcort" min=0 autofocus th:field="*{nrCort}">
+        				<label for="cort" class="form-label text-danger"><b>Nr. corturi ( buc.):</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="nrpc" placeholder="capacitate" name="nrpcort" min=0 th:field="*{nrPCort}">
+        				<label for="nrpc" class="form-label text-danger"><b>Marime cort ( nr. max. persoane ):</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="npc" placeholder="Nr. persoane:" name="nrpersc" min=0 th:field="*{nrPersC}">
+        				<label for="npc" class="form-label text-danger"><b>Nr. persoane:</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="cortEE" placeholder="Nr. posturi EE" name="cortEE" min=0 th:field="*{nrEEC}">
+        				<label for="cortEE" class="form-label text-danger"><b>Nr. posturi consum EE:</b></label>
+      				</div>
+      				</fieldset>
+				</div>
+				<div class="col-sm-3 p-3">
+					<fieldset class="border border-warning p-2">
+					<legend class="bg-warning text-danger p-1">Sejur la AUTO-RULOTA</legend>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="rulota" placeholder="Rulota" name="nrrulota" min=0 th:field="*{nrRulota}">
+        				<label for="rulota" class="form-label text-danger"><b>Nr. auto-rulote ( buc.):</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="npr" placeholder="Nr. persoane:" name="nrpersr" min=0 th:field="*{nrPersR}">
+        				<label for="npr" class="form-label text-danger"><b>Nr. persoane:</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="rulotaEE" placeholder="Nr. posturi EE" name="rulotaEE" min=0 th:field="*{nrEER}">
+        				<label for="rulotaEE" class="form-label text-danger"><b>Nr. posturi consum EE:</b></label>
+      				</div>
+      				</fieldset>
+      			</div>
+				<div class="col-sm-2 p-3">
+					<fieldset class="border border-warning p-2">
+					<legend class="bg-warning text-danger p-1">Numar AUTO/MOTO:</legend>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="nrauto" placeholder="Nr. automobile" name="nrauto" min=0 th:field="*{nrAuto}">
+        				<label for="nrauto" class="form-label text-danger"><b>Nr. Automobile:</b></label>
+      				</div>
+					<div class="form-floating mb-1 mt-1">
+        				<input type="number" class="form-control text-success" id="nrmoto" placeholder="Nr. Motociclete" name="moto" min=0 th:field="*{nrMoto}">
+        				<label for="nrmoto" class="form-label text-danger"><b>Nr. Motociclete:</b></label>
+      				</div>
+      				</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-10 p-3"></div>
+				<div class="col-sm-1 p-3">
+					<div th:if="${xcmdExt}"> 
+						<button type="submit" class="btn btn-outline-info">MODIFICARE VALIDARE</button>
+					</div>
+					<div th:unless="${xcmdExt}">
+						<button type="submit" class="btn btn-outline-info">ADAUGARE</button>
+					</div>
+				</div>
+				<div class="col-sm-1 p-3"></div>
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-sm-1 p-3"></div>
+			<div class="col-sm-10 p-3">
+				<table class="table bg-light">
+					<tbody>
+        			<tr class="table-success">
+        	    		<td>Data sosirii</td>
+            			<td>Data plecarii</td>
+            			<td>Nr. Corturi</td>
+            			<td>Marime cort</td>
+            			<td>Nr. persoane Cort</td>
+            			<td>Nr. posturi EE Cort</td>
+            			<td>Nr. Auto-Rulote</td>
+            			<td>Nr. persoane Rulota</td>
+            			<td>Nr. posturi EE Rulota</td>
+            			<td>Nr. automobile</td>
+    	        		<td>Nr. motociclete</td>
+		    	    </tr>
+    		    	<tr th:each="list : ${listSJ}">
+			   	        <td th:text="${list.dtSosit}"></td>
+	    		   	    <td th:text="${list.dtPlecat}"></td>
+    	   				<td th:text="${list.nrCort}"></td>
+    	   				<td th:text="${list.nrPCort}"></td>
+    	   				<td th:text="${list.nrPersC}"></td>
+    	   				<td th:text="${list.nrEEC}"></td>
+    	   				<td th:text="${list.nrRulota}"></td>
+    	   				<td th:text="${list.nrPersR}"></td>
+			           	<td th:text="${list.nrEER}"></td>
+			           	<td th:text="${list.nrAuto}"></td>
+			           	<td th:text="${list.nrMoto}"></td>
+    			    </tr>
+    				</tbody>
+    			</table>
+    		</div>
+			<div class="col-sm-1 p-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3 p-3"></div>
+			<div class="col-sm-6 p-3">
+				<table class="table bg-light">
+					<tbody>
+        			<tr class="table-success">
+        	    		<td>Data sosirii</td>
+            			<td>Data plecarii</td>
+            			<td>Nr. Zile</td>
+            			<td>Valoare</td>
+		    	    </tr>
+    		    	<tr th:each="list : ${listSV}">
+			   	        <td th:text="${list.dtSosit}"></td>
+	    		   	    <td th:text="${list.dtPlecat}"></td>
+	    		   	    <td th:text="${list.nrZile}"></td>
+    	   				<td th:text="${list.valoare}"></td>
+    			    </tr>
+    				</tbody>
+    			</table>
+    		</div>
+			<div class="col-sm-3 p-3"></div>
+		</div>
+	</div>
+</body>
+</html>

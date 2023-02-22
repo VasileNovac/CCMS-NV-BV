@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="copy">
+		<fieldset class="border border-warning p-2">
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>Act Identitate:</b></div>
+   				<span th:text="${tactId}"></span>
+			</div>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>Serie Act Identitate:</b></div>
+   				<span th:text="${tserieActId}"></span>
+			</div>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>Numar Act Identitate:</b></div>
+   				<span th:text="${tnrActId}"></span>
+			</div>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>Nume:</b></div>
+   				<span th:text="${tnume}"></span>
+			</div>
+			<div class="border text-danger bg-light rounded-2 p-1 mb-1 mt-1">
+				<div class="text-dark"><b>Prenume</b></div>
+   				<span th:text="${tprenume}"></span>
+			</div>
+		</fieldset>
+	</div>
+</body>
+</html>

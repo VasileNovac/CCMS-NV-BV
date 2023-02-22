@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="copy">
+<nav class="navbar navbar-expand-lg navbar-light bg-info">
+   	<div class="container-fluid">
+         <a class="navbar-brand" href="#"><b>NV</b></a>
+         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+           <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-pills" role="tablist">
+            	<li class="nav-item">
+               		<a id="id1" class="nav-link" href="/"><b>Home</b></a>
+             	</li>
+             	<li class="nav-item">
+               		<a id="id2" th:class="'nav-link '+ ${ymodul == 'initf' ? 'active' : ' '}" th:aria-current="${ymodul == 'initf' ? 'page' : ' '}" href="/initf"><b>Init Camping</b></a>
+             	</li>
+             	<li class="nav-item">
+               		<a id="id3" th:class="'nav-link '+ ${ymodul == 'initc' ? 'active' : ' '}" th:aria-current="${ymodul == 'initc' ? 'page' : ' '}" href="/initc"><b>Init Sezon</b></a>
+             	</li>
+             	<li class="nav-item">
+               		<a id="id4" th:class="'nav-link '+ ${ymodul == 'client' ? 'active' : ' '}" th:aria-current="${ymodul == 'client' ? 'page' : ' '}" href="/client"><b>Client</b></a>
+             	</li>
+             	<li class="nav-item">
+               		<a id="id5" th:class="'nav-link '+ ${ymodul == 'sejur' ? 'active' : ' '}" th:aria-current="${ymodul == 'sejur' ? 'page' : ' '}" href="/sejur"><b>Sejur</b></a>
+             	</li>
+<!--
+             	<li class="nav-item">
+               		<a id="id6" th:class="'nav-link '+ ${ymodul == 'factura' ? 'active' : ' '}" th:aria-current="${ymodul == 'factura' ? 'page' : ' '}" href="/factura"><b>Factura</b></a>
+             	</li>
+-->
+             	<li class="nav-item">
+               		<a id="id7" th:class="'nav-link '+ ${ymodul == 'rap' ? 'active' : ' '}" th:aria-current="${ymodul == 'rap' ? 'page' : ' '}" href="/rap"><b>Rapoarte</b></a>
+             	</li>
+           </ul>
+         </div>
+   	</div>   	
+</nav>
+</div>
+</body>
+</html>
